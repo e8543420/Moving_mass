@@ -30,27 +30,27 @@ from oct2py import octave
 
 # Import test data
 # Partial correlated test data
-test_freq = pd.read_excel('Test_record_2018_01.xlsx',sheet_name=0)
-test_freq.drop(test_freq.columns[-2:],axis=1,inplace=True)
-test_freq.drop(test_freq.index[-7:],axis=0,inplace=True)
+test_freq = pd.read_excel('Copy of freq_data_ref_11_29_100.xlsx',sheet_name=1)
+test_freq.drop(test_freq.columns[-3:],axis=1,inplace=True)
+
 
 # Positive linear correlated test data
 #test_freq = pd.read_excel('Test_record_2018_01.xlsx',sheet_name=1)
 #test_freq.drop(test_freq.index[-7:],axis=0,inplace=True)
 
-test_freq=np.array(test_freq.iloc[:,4:])
+test_freq=np.array(test_freq.iloc[:,5:])
 
-# Initilization
+#%% Initilization
 method_flag=7
 sample_number=1000
-upb_search=0.1
-lob_search=-0.1
+upb_search=0.4
+lob_search=-0.4
 
 problem = {
     'num_vars': 4,
     'names': ['x1', 'x2', 'x3','x4'],
     'groups': None,
-    'bounds': [[lob_search, upb_search],[lob_search, upb_search],[lob_search, upb_search],[lob_search, upb_search]]
+    'bounds': [[lob_search, upb_search],[lob_search, upb_search],[-.6, .6],[-.6, .6]]
 }
 
 ## Generate samples
@@ -81,9 +81,9 @@ FEM_freq = octave.K_movingmass_fun(parm)
 
 #%%  Sensitivity analysis
 
-order_invloved=12
-test_freq=test_freq[:,:order_invloved]
-FEM_freq=FEM_freq[:,:order_invloved]
+order_invloved=[0,1,2,3,6,7,10,11]
+#test_freq=test_freq[:,:order_invloved]
+FEM_freq=FEM_freq[:,order_invloved]
 #init_freq=init_freq[:,:order_invloved]
 
 mean_test=np.mean(test_freq,axis=0)
@@ -96,7 +96,7 @@ cov_FEM=np.cov(FEM_freq,rowvar=False)
 test_freq_normalized=np.zeros(test_freq.shape)
 FEM_freq_normalized=np.zeros(FEM_freq.shape)
 #init_freq_normalized=np.zeros(init_freq.shape)
-for i in range(0,order_invloved):
+for i in range(0,len(order_invloved)):
     test_freq_normalized[:,i]=(test_freq[:,i])/mean_test[i]
     FEM_freq_normalized[:,i]=(FEM_freq[:,i])/mean_test[i]
 #    init_freq_normalized[:,i]=(init_freq[:,i])/mean_test[i]

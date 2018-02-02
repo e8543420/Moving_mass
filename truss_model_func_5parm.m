@@ -5,7 +5,7 @@ function [freqs_Hz]=truss_model_func_5parm(pos1, pos2, k_b , G_b, G_v)
 %  pos1  -- position of mass 1, by node number from 46(5cm) to 76(35cm), integer.
 %  pos2  -- position of mass 2, by node number from 85(5cm) to 115(35cm), integer.
 %  k_b   -- base restriction stiffness 2e7 by default.
-%  G_b   -- shear modulus for bottom horizontal beam, 2.594e10 by default. Discarded for dimension reduce
+%  G_b   -- shear modulus for bottom horizontal beam, 2.594e10 by default.
 %  G_v   -- shear modulus for inner vertical beam, 2.594e10 by default.
 %  Default input model: [freqs_Hz]=truss_model_func(pos1=61, pos2=100, k_b=2e7, G_v=2.594e10)
 

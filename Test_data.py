@@ -54,13 +54,23 @@ data = pd.concat([parm1 , parm2 , parm3])
 ## Draw the heatmap with the mask and correct aspect ratio
 #sns.heatmap(corr, mask=mask, cmap=cmap,annot=True)
 
-parm1['Test set']='Set 1'
-parm2['Test set']='Set 2'
-parm3['Test set']='Set 3'
-data = pd.concat([parm1 , parm2 , parm3]) 
-data_mean=data.drop(data.columns[:4],axis=1).groupby('Test set').mean()
-data_std=data.drop(data.columns[:4],axis=1).groupby('Test set').std()
+## Draw the bar plot of three sets
+#parm1['Test set']='Set 1'
+#parm2['Test set']='Set 2'
+#parm3['Test set']='Set 3'
+#data = pd.concat([parm1 , parm2 , parm3]) 
+#data_mean=data.drop(data.columns[:4],axis=1).groupby('Test set').mean()
+#data_std=data.drop(data.columns[:4],axis=1).groupby('Test set').std()
+#
+#data_mean.T.plot(kind='bar')
+#data_std.T.plot(kind='bar')
 
-data_mean.T.plot(kind='bar')
-data_std.T.plot(kind='bar')
+# Draw the data of single set
+plot_data=parm1.iloc[:,4:]
+ax=plot_data.plot(kind='kde')
+ax.set_xlabel('Frequencies(Hz)')
+ax.set_ylabel('Distribution')
+
+
+
 

@@ -52,9 +52,9 @@ end;
 
 X_validate(:,disp_i)=X(list_pick,disp_i);
 
-Y_validate=zeros(length(X_validate),rows(Y'));
+Y_validate=zeros(length(X_validate),size(Y,2));
 for i=1:length(X_validate)
-  Y_validate(i,:)=truss_model_func(X_validate(i,1), X_validate(i,2), X_validate(i,3), X_validate(i,4),X_validate(i,5));
+  Y_validate(i,:)=truss_model_func_5parm(X_validate(i,1), X_validate(i,2), X_validate(i,3), X_validate(i,4),X_validate(i,5));
   %Y_validate(i,:)=predictor(X_validate(i,:)./default_parm, dmodel);
 end
 

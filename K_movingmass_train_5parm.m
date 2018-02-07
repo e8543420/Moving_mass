@@ -26,6 +26,7 @@ theta = [10 10 10 10 10];
 lob = 1e-1*ones(1,5); 
 upb = 20*ones(1,5);
 
-[dmodel, perf] = dacefit(X, Y(:,1:12), @regpoly0, @corrgauss, theta, lob, upb);
+Y=Y(:,1:12);
+[dmodel, perf] = dacefit(X, Y, @regpoly0, @corrgauss, theta, lob, upb);
 
 save('MM_kriging_norm_5parm.mat','dmodel','perf','mesh_bound','default_parm');

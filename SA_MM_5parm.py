@@ -43,14 +43,14 @@ test_freq=np.array(test_freq.iloc[:,4:])
 # Initilization
 method_flag=7
 sample_number=1000
-upb_search=0.4
-lob_search=-0.4
+upb_search=0.3
+lob_search=-0.3
 
 problem = {
     'num_vars': 5,
     'names': ['x1', 'x2', 'x3','x4','x5'],
     'groups': None,
-    'bounds': [[lob_search, upb_search],[lob_search, upb_search],[-.6,.6],[lob_search, upb_search],[lob_search, upb_search]]
+    'bounds': [[lob_search, upb_search],[lob_search, upb_search],[-.5,.5],[lob_search, upb_search],[lob_search, upb_search]]
 }
 
 ## Generate samples

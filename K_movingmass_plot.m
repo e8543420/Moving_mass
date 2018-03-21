@@ -36,14 +36,20 @@ X2 = reshape(X_trail(:,disp_i(2)),mesh_num,mesh_num)*default_parm(disp_i(2));
 YX = reshape(Y_predict(:,disp_out), size(X1));
 
 figure(1), mesh(X1, X2, YX);
-xlabel(strcat('Parameter: ',parameter_name(disp_i(1),:)));
-ylabel(strcat('Parameter: ',parameter_name(disp_i(2),:)));
-zlabel(strcat('Frequency No.',num2str(disp_out)));
+xlabel(strcat('Parameter: ',parameter_name(disp_i(1),:),'(cm)'));
+ylabel(strcat('Parameter: ',parameter_name(disp_i(2),:),'(cm)'));
+zlabel(strcat('Frequency No.',num2str(disp_out),'(Hz)'));
+xtk=[45,50,55,60,65,70,75];
+ytk=[85,90,95,100,105,110,115];
+xtk_label=[5,10,15,20,25,30,35,40,45];
+ytk_label=[5,10,15,20,25,30,35,40,45];
+set(gca,'xtick',xtk);set(gca,'xticklabel',xtk_label);
+set(gca,'ytick',ytk);set(gca,'yticklabel',ytk_label);
 hold on;
 %Randomly pick some sample to validate the model
 
 list_pick = randperm(length(X));
-list_pick = list_pick(1:10);
+list_pick = [list_pick(1:10),4096];
 
 X_validate = zeros(length(list_pick),length(default_parm));
 for i=1:length(default_parm)
